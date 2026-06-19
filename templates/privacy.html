@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy — Spendly{% endblock %}
+
+{% block content %}
+
+<section class="legal-page">
+    <div class="legal-inner">
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-updated">Last updated: June 19, 2026</p>
+
+        <div class="legal-section">
+            <h2>1. Data We Collect</h2>
+            <p>When you use Spendly, we collect only what is necessary to provide the Service:</p>
+            <ul>
+                <li><strong>Account information</strong> — your name, email address, and hashed password when you register.</li>
+                <li><strong>Expense data</strong> — amounts, categories, dates, and descriptions you enter manually.</li>
+                <li><strong>Usage data</strong> — basic logs such as login timestamps, used solely for security and debugging.</li>
+            </ul>
+            <p>We do not collect payment information, location data, or any data from your device beyond what you explicitly submit.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>2. How We Use Your Data</h2>
+            <p>Your data is used exclusively to operate and improve the Service:</p>
+            <ul>
+                <li>To display your expenses and generate spending summaries.</li>
+                <li>To authenticate you and keep your account secure.</li>
+                <li>To diagnose technical issues and maintain service reliability.</li>
+            </ul>
+            <p>We do not use your data for advertising, profiling, or any purpose beyond what is described here.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>3. Data Storage</h2>
+            <p>Your data is stored in a secured database accessible only to the Service. Passwords are never stored in plain text — they are hashed using industry-standard algorithms before being saved.</p>
+            <p>You may request deletion of your account and all associated data at any time. Upon deletion, your data is permanently removed and cannot be recovered.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>4. Third-Party Services</h2>
+            <p>Spendly does not sell, rent, or share your personal data with third parties. We use the following external services only to deliver the product:</p>
+            <ul>
+                <li><strong>Google Fonts</strong> — fonts are loaded from Google's CDN. Google may log your IP address as part of the request. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details.</li>
+            </ul>
+            <p>No analytics, advertising, or tracking scripts are embedded in the Service.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>5. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, how your data is handled, or would like to request deletion of your account, please reach out via the contact information provided on our website.</p>
+            <p>We will respond to all data-related requests within 30 days.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
