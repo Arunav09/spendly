@@ -38,6 +38,25 @@
             </div>
         </div>
 
+        <!-- Date Filter Bar -->
+        <form method="GET" action="{{ url_for('profile') }}"
+              class="date-filter-bar" id="date-filter-form">
+            <div class="date-filter-presets">
+                <button type="button" class="preset-btn" data-preset="all">All Time</button>
+                <button type="button" class="preset-btn" data-preset="week">This Week</button>
+                <button type="button" class="preset-btn" data-preset="month">This Month</button>
+                <button type="button" class="preset-btn" data-preset="last-month">Last Month</button>
+            </div>
+            <div class="date-range-inputs">
+                <input type="date" name="from" id="date-from" class="date-input"
+                       value="{{ date_from }}">
+                <span class="date-range-sep">to</span>
+                <input type="date" name="to" id="date-to" class="date-input"
+                       value="{{ date_to }}">
+                <button type="submit" class="date-range-submit">Apply</button>
+            </div>
+        </form>
+
         <!-- Section 3: Transaction History -->
         <section class="profile-section">
             <h2 class="section-title">Transaction History</h2>

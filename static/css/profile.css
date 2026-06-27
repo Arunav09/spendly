@@ -263,6 +263,99 @@
 .breakdown-bar--other         { background: var(--cat-other);         }
 
 /* ------------------------------------------------------------------ */
+/* Date Filter Bar                                                      */
+/* ------------------------------------------------------------------ */
+
+.date-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+}
+
+.date-filter-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.preset-btn {
+    background: transparent;
+    color: var(--ink-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.35rem 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.preset-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+}
+
+.preset-btn.active {
+    background: var(--accent);
+    color: var(--paper-card);
+    border-color: var(--accent);
+}
+
+.date-range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    flex-wrap: wrap;
+}
+
+.date-range-sep {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+
+.date-input {
+    width: 8.5rem;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--paper);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.date-input:focus {
+    border-color: var(--accent);
+}
+
+.date-range-submit {
+    padding: 0.4rem 1rem;
+    background: var(--ink);
+    color: var(--paper-card);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.date-range-submit:hover {
+    background: var(--accent);
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                           */
 /* ------------------------------------------------------------------ */
 
@@ -271,8 +364,10 @@
 }
 
 @media (max-width: 600px) {
-    .profile-page  { padding: 1.5rem 1rem 3rem; }
-    .profile-inner { gap: 1.5rem; }
-    .profile-header { flex-direction: column; text-align: center; }
-    .profile-stats  { grid-template-columns: 1fr; }
+    .profile-page      { padding: 1.5rem 1rem 3rem; }
+    .profile-inner     { gap: 1.5rem; }
+    .profile-header    { flex-direction: column; text-align: center; }
+    .profile-stats     { grid-template-columns: 1fr; }
+    .date-filter-bar   { flex-direction: column; align-items: flex-start; }
+    .date-range-inputs { margin-left: 0; }
 }
