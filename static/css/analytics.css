@@ -1,0 +1,105 @@
+.analytics-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px - 100px);
+    padding: 4rem 2rem;
+}
+
+.analytics-inner {
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.cs-icon-wrap {
+    width: 96px;
+    height: 96px;
+    background: var(--accent-light);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.cs-icon {
+    width: 52px;
+    height: 52px;
+    color: var(--accent);
+}
+
+.cs-badge {
+    display: inline-block;
+    background: var(--accent-2-light);
+    color: var(--accent-2);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+}
+
+.cs-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+}
+
+.cs-description {
+    font-size: 1.0625rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 440px;
+}
+
+.cs-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.75rem;
+    width: 100%;
+    margin-top: 0.25rem;
+    text-align: left;
+}
+
+.cs-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+}
+
+.cs-feature-icon {
+    color: var(--accent);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.cs-back-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.55rem 1.4rem;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.cs-back-btn:hover {
+    background: var(--accent);
+}

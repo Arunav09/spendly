@@ -53,6 +53,17 @@
     margin-bottom: 1.25rem;
 }
 
+.section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.section-title-row .section-title {
+    margin-bottom: 0;
+}
+
 /* ------------------------------------------------------------------ */
 /* Section 1 — User Info Card                                          */
 /* ------------------------------------------------------------------ */
