@@ -19,12 +19,17 @@ def get_user_by_id(user_id):
     }
 
 
-def get_summary_stats(user_id):
+def get_summary_stats(user_id, date_from=None, date_to=None):
     conn = get_db()
-    rows = conn.execute(
-        "SELECT amount, category FROM expenses WHERE user_id = ?",
-        (user_id,)
-    ).fetchall()
+    sql = "SELECT amount, category FROM expenses WHERE user_id = ?"
+    params = [user_id]
+    if date_from:
+        sql += " AND date >= ?"
+        params.append(date_from)
+    if date_to:
+        sql += " AND date <= ?"
+        params.append(date_to)
+    rows = conn.execute(sql, params).fetchall()
     conn.close()
     if not rows:
         return {"total_spent": "₹0.00", "transaction_count": 0, "top_category": "—"}
@@ -40,13 +45,22 @@ def get_summary_stats(user_id):
     }
 
 
-def get_recent_transactions(user_id, limit=10):
+def get_recent_transactions(user_id, limit=10, date_from=None, date_to=None):
     conn = get_db()
-    rows = conn.execute(
+    sql = (
         "SELECT date, description, category, amount FROM expenses"
-        " WHERE user_id = ? ORDER BY date DESC, id DESC LIMIT ?",
-        (user_id, limit)
-    ).fetchall()
+        " WHERE user_id = ?"
+    )
+    params = [user_id]
+    if date_from:
+        sql += " AND date >= ?"
+        params.append(date_from)
+    if date_to:
+        sql += " AND date <= ?"
+        params.append(date_to)
+    sql += " ORDER BY date DESC, id DESC LIMIT ?"
+    params.append(limit)
+    rows = conn.execute(sql, params).fetchall()
     conn.close()
     result = []
     for r in rows:
@@ -60,13 +74,21 @@ def get_recent_transactions(user_id, limit=10):
     return result
 
 
-def get_category_breakdown(user_id):
+def get_category_breakdown(user_id, date_from=None, date_to=None):
     conn = get_db()
-    rows = conn.execute(
+    sql = (
         "SELECT category, SUM(amount) as total FROM expenses"
-        " WHERE user_id = ? GROUP BY category ORDER BY total DESC",
-        (user_id,)
-    ).fetchall()
+        " WHERE user_id = ?"
+    )
+    params = [user_id]
+    if date_from:
+        sql += " AND date >= ?"
+        params.append(date_from)
+    if date_to:
+        sql += " AND date <= ?"
+        params.append(date_to)
+    sql += " GROUP BY category ORDER BY total DESC"
+    rows = conn.execute(sql, params).fetchall()
     conn.close()
     if not rows:
         return []

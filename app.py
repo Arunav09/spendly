@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, abort, render_template, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from database.db import get_db, init_db, seed_db, create_user, get_user_by_email
@@ -10,6 +11,14 @@ from database.queries import (
 
 app = Flask(__name__)
 app.secret_key = "dev-secret-change-in-prod"
+
+
+def _validate_date_str(s):
+    try:
+        datetime.strptime(s, "%Y-%m-%d")
+        return s
+    except ValueError:
+        return None
 
 
 # ------------------------------------------------------------------ #
@@ -110,15 +119,27 @@ def profile():
         "member_since": user_data["member_since"],
         "initials":     initials,
     }
-    stats = get_summary_stats(user_id)
-    transactions = get_recent_transactions(user_id)
+    raw_from = request.args.get("from", "").strip()
+    raw_to   = request.args.get("to",   "").strip()
+
+    date_from = _validate_date_str(raw_from) if raw_from else None
+    date_to   = _validate_date_str(raw_to)   if raw_to   else None
+
+    if (raw_from and date_from is None) or (raw_to and date_to is None):
+        date_from = None
+        date_to   = None
+
+    stats = get_summary_stats(user_id, date_from=date_from, date_to=date_to)
+    transactions = get_recent_transactions(user_id, date_from=date_from, date_to=date_to)
     categories = [
         {"name": c["name"], "amount": c["amount"], "percent": c["pct"]}
-        for c in get_category_breakdown(user_id)
+        for c in get_category_breakdown(user_id, date_from=date_from, date_to=date_to)
     ]
     return render_template("profile.html",
         user=user, stats=stats,
         transactions=transactions, categories=categories,
+        date_from=date_from or "",
+        date_to=date_to or "",
     )
 
 
