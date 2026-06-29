@@ -2,7 +2,7 @@ import math
 from datetime import datetime
 from flask import Flask, abort, render_template, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
-from database.db import get_db, init_db, seed_db, create_user, get_user_by_email, insert_expense, get_expense_by_id, update_expense
+from database.db import get_db, init_db, seed_db, create_user, get_user_by_email, insert_expense, get_expense_by_id, update_expense, delete_expense as db_delete_expense
 from database.queries import (
     get_user_by_id,
     get_summary_stats,
@@ -253,9 +253,22 @@ def edit_expense(expense_id):
     )
 
 
-@app.route("/expenses/<int:expense_id>/delete")
+@app.route("/expenses/<int:expense_id>/delete", methods=["GET", "POST"])
 def delete_expense(expense_id):
-    return "Delete expense — coming in Step 9"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    expense = get_expense_by_id(expense_id)
+    if expense is None:
+        abort(404)
+    if expense["user_id"] != session["user_id"]:
+        abort(403)
+
+    if request.method == "POST":
+        db_delete_expense(expense_id, session["user_id"])
+        return redirect(url_for("profile"))
+
+    return render_template("delete_expense.html", expense=expense)
 
 
 if __name__ == "__main__":
