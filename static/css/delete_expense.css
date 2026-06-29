@@ -1,0 +1,33 @@
+.confirm-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.confirm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.95rem;
+}
+
+.confirm-label {
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.confirm-value {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.btn-danger--full {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
